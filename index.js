@@ -8,6 +8,10 @@ const port = 3000;
 //cors 설정
 app.use(cors());
 
+app.get("/", (req, res) => {
+  res.send("Welcome to the Express server!");
+});
+
 app.get("/api/products", async (req, res) => {
   try {
     const response = await axios.get(
