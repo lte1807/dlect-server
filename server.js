@@ -15,7 +15,7 @@ app.get("/api/products", async (req, res) => {
       {
         headers: {
           "Content-Type": "application/json",
-          Authorization: "Bearer bP1Pm8pkB10kfxkPlM4muC",
+          Authorization: "Bearer 0LmEncTOHpioScyN5clK0C",
         },
       }
     );
