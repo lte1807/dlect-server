@@ -34,5 +34,3 @@ app.get("/api/products", async (req, res) => {
 app.listen(port, () => {
   console.log(`Proxy server is running on http://localhost:${port}`);
 });
-
-module.exports = app;
