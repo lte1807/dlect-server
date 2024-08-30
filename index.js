@@ -16,16 +16,16 @@ app.post("/api/refresh_token", async (req, res) => {
   try {
     const response = await axios.post(
       `https://therain0517.cafe24api.com/api/v2/oauth/token`,
-      querystring.stringify({
-        grant_type: "refresh_token",
-        refresh_token: "hlzmlElYLFbubWSUitdsnA",
-        redirect_uri: "https://therain0517.cafe24.com/test.html",
-      }),
       {
         headers: {
           "Content-Type": "application/x-www-form-urlencoded",
           Authorization:
             "Basic c2xuRjF5ZXVIcTJjdG9XMjdlbzF5Rjo5cEtzNTFCYktGbXF3bVhIc3BZWWVH",
+        },
+        body: {
+          grant_type: "refresh_token",
+          refresh_token: "hlzmlElYLFbubWSUitdsnA",
+          redirect_uri: "https://therain0517.cafe24.com/test.html",
         },
       }
     );
