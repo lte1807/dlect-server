@@ -13,14 +13,12 @@ app.get("/", (req, res) => {
 });
 
 app.post("/api/refresh_token", async (req, res) => {
-  const { refresh_token } = req.body; // 요청 본문에서 refresh_token을 추출
-
   try {
     const response = await axios.post(
       `https://therain0517.cafe24api.com/api/v2/oauth/token`,
       querystring.stringify({
         grant_type: "refresh_token",
-        refresh_token: refresh_token,
+        refresh_token: "hlzmlElYLFbubWSUitdsnA",
         redirect_uri: "https://therain0517.cafe24.com/test.html",
       }),
       {
