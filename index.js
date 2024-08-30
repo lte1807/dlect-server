@@ -12,14 +12,21 @@ app.get("/", (req, res) => {
   res.send("Welcome to the Express server!");
 });
 
-app.get("/api/products", async (req, res) => {
+app.post("/api/refresh_token", async (req, res) => {
   try {
     const response = await axios.get(
-      "https://therain0517.cafe24api.com/api/v2/admin/products",
+      "https://therain0517.cafe24api.com/api/v2/oauth/token",
       {
         headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer tB1JFrcJFRCknUsylUGJhD",
+          "Content-Type": "application/x-www-form-urlencoded",
+          Authorization:
+            "Basic c2xuRjF5ZXVIcTJjdG9XMjdlbzF5Rjo5cEtzNTFCYktGbXF3bVhIc3BZWWVH",
+        },
+
+        body: {
+          grant_type: "refresh_token",
+          refresh_token: "vLeLEEyIT6ORvQQIjM37qC",
+          redirect_uri: "https://therain0517.cafe24.com/test.html",
         },
       }
     );
