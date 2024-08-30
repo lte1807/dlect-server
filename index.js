@@ -19,7 +19,29 @@ app.get("/api/products", async (req, res) => {
       {
         headers: {
           "Content-Type": "application/json",
-          Authorization: "Bearer nJwlF66eRSUBvsQX3HXRLH",
+          Authorization: "Bearer tB1JFrcJFRCknUsylUGJhD",
+        },
+      }
+    );
+
+    // Cafe24 API의 응답을 클라이언트로 반환
+    res.status(200).json(response.data);
+  } catch (error) {
+    console.error("Error fetching products:", error);
+    res
+      .status(500)
+      .json({ message: "Error fetching products", error: error.message });
+  }
+});
+
+app.get("/api/products", async (req, res) => {
+  try {
+    const response = await axios.get(
+      "https://therain0517.cafe24api.com/api/v2/admin/products",
+      {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer tB1JFrcJFRCknUsylUGJhD",
         },
       }
     );
