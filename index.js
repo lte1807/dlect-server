@@ -13,55 +13,56 @@ app.get("/", (req, res) => {
 });
 
 app.post("/api/refresh_token", async (req, res) => {
+  const { refresh_token } = req.body; // 요청 본문에서 refresh_token을 추출
+
   try {
-    const response = await axios.get(
-      "https://therain0517.cafe24api.com/api/v2/oauth/token",
+    const response = await axios.post(
+      `https://therain0517.cafe24api.com/api/v2/oauth/token`,
+      querystring.stringify({
+        grant_type: "refresh_token",
+        refresh_token: refresh_token,
+        redirect_uri: "https://therain0517.cafe24.com/test.html",
+      }),
       {
         headers: {
           "Content-Type": "application/x-www-form-urlencoded",
           Authorization:
             "Basic c2xuRjF5ZXVIcTJjdG9XMjdlbzF5Rjo5cEtzNTFCYktGbXF3bVhIc3BZWWVH",
         },
-
-        body: {
-          grant_type: "refresh_token",
-          refresh_token: "vLeLEEyIT6ORvQQIjM37qC",
-          redirect_uri: "https://therain0517.cafe24.com/test.html",
-        },
       }
     );
 
     // Cafe24 API의 응답을 클라이언트로 반환
     res.status(200).json(response.data);
   } catch (error) {
-    console.error("Error fetching products:", error);
+    console.error("Error refreshing token:", error);
     res
       .status(500)
-      .json({ message: "Error fetching products", error: error.message });
+      .json({ message: "Error refreshing token", error: error.message });
   }
 });
 
-app.get("/api/products", async (req, res) => {
-  try {
-    const response = await axios.get(
-      "https://therain0517.cafe24api.com/api/v2/admin/products",
-      {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer tB1JFrcJFRCknUsylUGJhD",
-        },
-      }
-    );
+// app.get("/api/products", async (req, res) => {
+//   try {
+//     const response = await axios.get(
+//       "https://therain0517.cafe24api.com/api/v2/admin/products",
+//       {
+//         headers: {
+//           "Content-Type": "application/json",
+//           Authorization: "Bearer tB1JFrcJFRCknUsylUGJhD",
+//         },
+//       }
+//     );
 
-    // Cafe24 API의 응답을 클라이언트로 반환
-    res.status(200).json(response.data);
-  } catch (error) {
-    console.error("Error fetching products:", error);
-    res
-      .status(500)
-      .json({ message: "Error fetching products", error: error.message });
-  }
-});
+//     // Cafe24 API의 응답을 클라이언트로 반환
+//     res.status(200).json(response.data);
+//   } catch (error) {
+//     console.error("Error fetching products:", error);
+//     res
+//       .status(500)
+//       .json({ message: "Error fetching products", error: error.message });
+//   }
+// });
 
 // Express 서버 실행
 app.listen(port, () => {
