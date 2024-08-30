@@ -20,7 +20,7 @@ app.post("/api/refresh_token", async (req, res) => {
       `https://therain0517.cafe24api.com/api/v2/oauth/token`,
       querystring.stringify({
         grant_type: "refresh_token",
-        refresh_token: "IQ19EXJJKhCl3TclkoPKvD",
+        refresh_token: "9ijqFA3vEBBuqWAcflGIKG",
         redirect_uri: "https://therain0517.cafe24.com/test.html",
       }),
       {
